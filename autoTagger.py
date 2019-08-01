@@ -7,7 +7,7 @@ from utils.weaponsConverter import combineData, modifyWeapons
 
 
 def autoTagger():
-    """
+    """Downloads files from r/ShardItKeepIt google drive locations, looks at your downloaded DIM data, updates tags to ``Keep`` or ``Junk`` based on if it is a god roll or not, and then saves the updated file.
     """
     project_path = Path(os.getcwd())
 
@@ -34,6 +34,9 @@ def autoTagger():
             pipe(updateTags).drop_duplicates()
 
     saved = tagged.to_csv('{}/data/updatedWeapons.csv'.format(project_path))
+
+    if saved:
+        print('Completed!')
 
 
 if __name__ == '__main__':
